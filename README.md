@@ -32,7 +32,7 @@ experiment 1
 <img width="416" alt="image" src="https://github.com/Endermen359872/grade11CCP/assets/78783001/2df6e8fd-db16-4203-a4c2-625ca1bb5a38"><br>
 <img width="416" alt="image" src="https://github.com/Endermen359872/grade11CCP/assets/78783001/74cf2869-905a-4609-8a82-baf6d98e41c0"><br>
 
-experiment 2  
+experiment 2  NOT DONT YET
 ---
 * 1.1 利用Logisim提供的加法器部件，构建一个带有CF、SF、OF、ZF标志位的32位加法器，并封装。  
 * 1.2 根据下图所给的“ALUctr四位编码方案”，构建“ALU操作控制信号生成部件”，并封装。
