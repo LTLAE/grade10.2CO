@@ -1,4 +1,4 @@
-GZHU grade 11 computer composition principles experiments personal backup.
+GZHU grade 11 computer organization experiments personal backup.
 =====
 This repository is created for personal backup.  
 Highly NOT recommand using codes in this repo to submit homework.  
@@ -32,7 +32,7 @@ experiment 1
 <img width="416" alt="image" src="https://github.com/Endermen359872/grade11CCP/assets/78783001/2df6e8fd-db16-4203-a4c2-625ca1bb5a38"><br>
 <img width="416" alt="image" src="https://github.com/Endermen359872/grade11CCP/assets/78783001/74cf2869-905a-4609-8a82-baf6d98e41c0"><br>
 
-experiment 2  NOT DONT YET
+experiment 2
 ---
 * 1.1 利用Logisim提供的加法器部件，构建一个带有CF、SF、OF、ZF标志位的32位加法器，并封装。  
 * 1.2 根据下图所给的“ALUctr四位编码方案”，构建“ALU操作控制信号生成部件”，并封装。
@@ -54,7 +54,38 @@ experiment 2  NOT DONT YET
 
 experiment 3  
 ---
-not done yet  
+* 使用RISC-V基础指令集RV32I进行汇编语言的编程  
+* 1 顺序结构的编程：计算y=10a+6b-c,其中y放在寄存器a0中，a、b、c三个变量存放的寄存器不限。要求不用乘法指令。  
+* 2 分支结构的编程：计算C语言表达式: if (x>y) z=x+5; else z=y-5。其中z存放在寄存器a1中，x、y存放的寄存器不限。  
+* 3 循环结构的编程：计算y=1+2+3…+100，y存放在寄存器a2中。  
+* 4 系统调用：输出提示信息“请输入姓名：”，从键盘输入本人姓名的字符串；输出提示信息“请输入学号：”，输入本人学号后3位（整数形式）。程序结束后调用exit功能退出。  
+  提示：系统调用功能的使用方式：将功能号放入a7寄存器，参数放入a0~a3等系统要求的寄存器，运行ecall指令。常用的系统调用功能有：
+  |功能号|功能描述|输入值|输出值|
+  |:----:|:----:|:----:|:----:|
+  |1|输出1个整数|a0 = 要输出的整数||
+  |4|输出字符串 |a0 = 要输出的字符串首地址||	
+  |5|输入1个整数||a0 = 输入的整数|
+  |8|输入字符串|a0 = 输入字符串放置的地址，a1 = 最大的输入字符个数||
+ 	|10|退出程序exit|||
+  |11|输出ascii字符|a0 = 要输出的字符 (只输出最低字节) ||
+
+  更多的系统调用功能详见RARS系统Help中的Syscalls部分。  
+  用法示例：  
+  >la  a0,string   #假设字符串首地址标号为string，放入a0  
+  >li  a7,4        #a7中存放功能号4   
+  >ecall           #开始系统调用，即可输出字符串到Run/IO区。
+* 5 利用数据结构课所学的任意一种排序方式，将数据区的10个数字按从小到大排序，并输出显示。要求程序的第一行注释里写明是采用什么排序方式，如冒泡排序。数据区为：
+  >.data  
+  >array:	 .word  -15,1024,12,60,19,26,-18,19,100,86
+
+
+
+
+
+
+
+
+
 
 experiment 4  
 ---
