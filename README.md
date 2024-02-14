@@ -78,15 +78,34 @@ experiment 3
   >.data  
   >array:	 .word  -15,1024,12,60,19,26,-18,19,100,86
 
-
-
-
-
-
-
-
-
-
 experiment 4  
 ---
-not done yet  
+* 1 实验测试指令数据的准备  
+从指令存储器的地址第12单元开始，依次写入以下5条机器指令：  
+<img width="416" alt="image" src="https://github.com/Endermen359872/grade11CO/assets/78783001/f263462e-beff-4c18-a382-85592644ffe6"><br>
+自行编写数据镜像文件，然后导入存储器。  
+数据镜像文件格式要求：首行以v2.0 raw开头，下一行开始存放数据，数据位宽为32位时，每一个位置存放4个字节的数据，以空格或回车隔开。连续相同的重复数字可简化表示，如12*0，表示连续12个0。  
+代码镜像文件示例：  
+>v2.0 raw  
+>12*0 000012b7 fff28293 05be1863 288000ef 00112623
+
+已知RISC-V指令格式如图所示：  
+<img width="415" alt="image" src="https://github.com/Endermen359872/grade11CO/assets/78783001/bd303731-e3b0-4cf9-a4a6-d92cd49a2aa8"><br>
+* 2 设计立即数扩展器，对指令中的立即数字段进行扩展生成32位立即数。参考电路如图所示：    
+<img width="367" alt="image" src="https://github.com/Endermen359872/grade11CO/assets/78783001/de24217d-4f44-4f34-92e2-25f7dfb32f25"><br>
+* 3 设计指令解析电路，将指令分解出opcode、rd、funct3、rs1、rs2和funct7 字段。参考电路如图所示：  
+<img width="385" alt="image" src="https://github.com/Endermen359872/grade11CO/assets/78783001/1a5fb5ae-89dc-4a69-9244-b65b4741dd7e"><br>
+* 4 设计取指令部件，包括指令从存储器中的读取，PC的更新。其中，指令存储器可采用Logisim中的ROM组件实现，要求指令存储器容量为 16KB（地址位宽12位，即A[11:0]，数据位宽32位，按字编址），指令字长为32位。
+在程序设计中指令和数据寻址，都是以字节为单位，因而在Logisim中读取指令存储器时，最低2位地址舍弃；由于ROM地址编码定义为12位地址位宽，因而32位指令地址PC[31:0]中高18位地址也舍弃。只需把PC[13:2]赋值到A[11:0]，其余的位皆无关。原理如图所示：  
+<img width="300" alt="image" src="https://github.com/Endermen359872/grade11CO/assets/78783001/4563e708-36a8-494f-aca2-b7aab080e7e2"><br>
+参考电路如图所示：  
+<img width="415" alt="image" src="https://github.com/Endermen359872/grade11CO/assets/78783001/7af2f451-d7cf-4048-bb5b-e599c95a0a72"><br>
+* 5 设计输入输出信号的观测窗口。为了便于检测输入输出数据是否正确，在主要电路图的上方设计观测窗口，采用隧道方式将信号引出，便于集中观察。参考电路如图所示：  
+<img width="415" alt="image" src="https://github.com/Endermen359872/grade11CO/assets/78783001/aed84fa6-d117-4443-9737-f49d93c71e23"><br>
+* 6 测试。在指令存储器上加载代码镜像文件，读取到指令存储器12处的指令时，观察输出结果，是否符合以下标准：  
+>第1条 ExtOp设置为001：Opcode=0110111、rs2=00000、funct3=001、rd=00101、rs1=00000、 funct7=000000、Imm=0x00001000。  
+>第2条 ExtOp设置为000： Opcode=0010011、rs2=11111、funct3=000、rd=00101、rs1=00101、funct7=1111111、Imm=0xffffffff。  
+>第3条 ExtOp设置为011： Opcode=1100011、rs2=11011、funct3=001、rd=10000、rs1=11100、funct7=000010、Imm=0x00000050。  
+>第4条 ExtOp设置为100：Opcode=1101111、rs2=01000、funct3=000、rd=00001、rs1=00000、funct7=0010100、Imm=0x00000288。  
+>第5条 ExtOp设置为010： Opcode=0100011、rs2=00001、funct3=010、rd=01100、rs1=00010、funct7=0000000、Imm=0x0000000c。  
+* 7 设计指令控制器，可参考所给资料（选做）。  
